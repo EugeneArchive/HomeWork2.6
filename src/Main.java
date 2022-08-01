@@ -7,7 +7,7 @@ public class Main {
 
         System.out.println(task1(nums));
 
-        System.out.println(task2(nums2));
+      //  System.out.println(task2(nums2));
         String text = "One Six Two Three Four One Three Five Five Six One One";
         task2b();
         System.out.println(task3(text));
@@ -17,7 +17,12 @@ task4(text);
 
     private static String task1(List<Integer> list) {
         List<Integer> changeList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
+        for (Integer change: list){   //2 вариант
+            if (change % 2 == 1) {
+                System.out.println(change);
+            }
+        }
+        for (int i = 0; i < list.size(); i++) { // 1 вариант
             if (!(list.get(i) % 2 == 0)) {
                 changeList.add(list.get(i));
             }
@@ -25,14 +30,20 @@ task4(text);
         return changeList.toString();
     }
 
-    private static String task2(List<Integer> list) {
-                Set<Integer> numbers = new TreeSet<>();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) % 2 == 0) {
-                numbers.add(list.get(i));
+    private static void task2(List<Integer> list) {
+        Set<Integer> numbers = new TreeSet<>(list);
+        for (Integer num:numbers) {
+            if (num % 2 == 0) {
+                System.out.println(num);;
             }
         }
-        return numbers.toString();
+
+//        for (int i = 0; i < list.size(); i++) { мой вариант
+//            if (list.get(i) % 2 == 0) {
+//                numbers.add(list.get(i));
+//            }
+//        }
+     //   return numbers.toString();
     }
 
     private static String task3(String text) {
@@ -43,6 +54,39 @@ task4(text);
         }
         return textSet.toString();
     }
+
+    private static void task3b(List<String> words) {
+        Map<String, Integer> map = new HashMap<>();
+        for (String word : words) {
+            if (map.containsKey(word)) {
+                map.put(word, map.get(word) + 1);
+            } else {
+                map.put(word, 1);
+            }
+        }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.println(entry.getKey());
+            }
+        }
+    }
+    private static void task4b(List<String> words) {
+        Map<String, Integer> map = new HashMap<>();
+        for (String word : words) {
+            if (map.containsKey(word)) {
+                map.put(word, map.get(word) + 1);
+            } else {
+                map.put(word, 1);
+            }
+        }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.println(entry); // вывод только повторяющихся
+            }
+        }
+        System.out.println(map); // все слова с номером количества их в тексте
+        }
+
 
     public static void task2b() {
         Collections.sort(nums2);
